@@ -7,7 +7,7 @@ require('dotenv').config();
 var transport = require('nodemailer-smtp-transport');
 
 var schedule = require('node-schedule');
-var j = schedule.scheduleJob('0 1 * * *', function(){
+var j = schedule.scheduleJob('25 15 * * *', function(){
   
   request('https://www.qafqazislam.com/index.php?lang=az&sectionid=123', (error,response, html) => {
   if(!error && response.statusCode == 200) {
