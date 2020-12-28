@@ -39,7 +39,7 @@ if(!error && response.statusCode == 200) {
   var mailOptions = { from: 'pashayevseymur42@gmail.com', to: 'seymurpashayev2018@gmail.com', subject: 'Namaz vaxtı', attachments:[{path:'./images/12.jpg'}] }; 
   smtpTransport.sendMail(mailOptions, (error, response) => { 
     
-  if(error) { res.send(error) 
+  if(error) { console.log(error) 
   }
   
   else { console.log('Success') 
