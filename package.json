@@ -14,6 +14,7 @@
     "dotenv": "^8.2.0",
     "image-downloader": "^4.0.2",
     "nodemailer": "^6.4.17",
+    "nodemailer-smtp-transport": "^2.7.4",
     "request": "^2.88.2",
     "windows-scheduler": "^1.0.1"
   }
