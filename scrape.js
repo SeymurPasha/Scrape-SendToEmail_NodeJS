@@ -3,6 +3,7 @@ const cheerio = require('cheerio')
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 const download = require('image-downloader')
+require('dotenv').config();
 
 
 
@@ -35,7 +36,7 @@ if(!error && response.statusCode == 200) {
 
 
   const sendToMe =  () => {
-  var smtpTransport = nodemailer.createTransport({ service: 'Gmail', port: 465, auth: { user: 'pashayevseymur42@gmail.com', pass: 'Pashayev1991@@' } }); 
+  var smtpTransport = nodemailer.createTransport({ service: 'Gmail', port: 465, auth: { user: 'pashayevseymur42@gmail.com', pass: process.env.password } }); 
   var mailOptions = { from: 'pashayevseymur42@gmail.com', to: 'seymurpashayev2018@gmail.com', subject: 'Namaz vaxtı', attachments:[{path:'./images/12.jpg'}] }; 
   smtpTransport.sendMail(mailOptions, (error, response) => { 
     
