@@ -37,7 +37,7 @@ var schedule = require('node-schedule');
 
 
   const sendToMe =  () => {
-  var smtpTransport = nodemailer.createTransport(transport({ service: 'Gmail', port: 465, auth: { user: 'pashayevseymur42@gmail.com', pass: process.env.password } })); 
+  var smtpTransport = nodemailer.createTransport(transport({host: 'smtp.gmail.com', service: 'Gmail', port: 465, auth: { user: 'pashayevseymur42@gmail.com', pass: process.env.password } })); 
   var mailOptions = { from: 'pashayevseymur42@gmail.com', to: 'seymurpashayev2018@gmail.com', subject: 'Namaz vaxtı', attachments:[{path:'./images/12.jpg'}] }; 
   smtpTransport.sendMail(mailOptions, (error, response) => { 
     
