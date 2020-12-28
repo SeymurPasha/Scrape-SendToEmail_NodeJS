@@ -6,7 +6,8 @@ const download = require('image-downloader')
 
 
 
-request('https://www.qafqazislam.com/index.php?lang=az&sectionid=123', (error,response, html) => {
+
+  request('https://www.qafqazislam.com/index.php?lang=az&sectionid=123', (error,response, html) => {
 if(!error && response.statusCode == 200) {
     const $ = cheerio.load(html)
 
@@ -28,11 +29,10 @@ if(!error && response.statusCode == 200) {
     setTimeout(() => {
       sendToMe()
     }, 10000); 
-    
-   
-      
+          
 }
 })
+
 
   const sendToMe =  () => {
   var smtpTransport = nodemailer.createTransport({ service: 'Gmail', port: 465, auth: { user: 'pashayevseymur42@gmail.com', pass: 'Pashayev1991@@' } }); 
