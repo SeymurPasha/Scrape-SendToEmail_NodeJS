@@ -7,7 +7,7 @@ require('dotenv').config();
 var transport = require('nodemailer-smtp-transport');
 
 var CronJob = require('cron').CronJob;
-var job = new CronJob('0 9 * * * ', function() {
+var job = new CronJob('0 /1 * * * ', function() {
   
   request('https://www.qafqazislam.com/index.php?lang=az&sectionid=123', (error,response, html) => {
   if(!error && response.statusCode == 200) {
