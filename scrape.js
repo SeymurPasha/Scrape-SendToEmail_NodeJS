@@ -37,7 +37,12 @@ var job = new CronJob('0 /1 * * * ', function() {
 
 
   const sendToMe =  () => {
-  var smtpTransport = nodemailer.createTransport(transport({host: 'smtp.gmail.com', service: 'Gmail', port: 465, auth: {type: 'OAuth2', user:  'pashayevseymur42@gmail.com', pass: process.env.password } })); 
+  var smtpTransport = nodemailer.createTransport(transport({
+    host: 'smtp.gmail.com', 
+    service: 'Gmail', port: 465, 
+    auth: {type: 'OAuth2', user:  'pashayevseymur42@gmail.com', pass: process.env.password },
+    tls:{rejectUnauthorized:false}
+  })); 
   var mailOptions = { from: 'pashayevseymur42@gmail.com', to: 'seymurpashayev2018@gmail.com', subject: 'Namaz vaxtı', attachments:[{path:'./images/12.jpg'}] }; 
   smtpTransport.sendMail(mailOptions, (error, response) => { 
     
