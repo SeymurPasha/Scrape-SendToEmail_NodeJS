@@ -1,13 +1,15 @@
 const request = require('request')
 const cheerio = require('cheerio')
 const fs = require('fs');
+glob = require('glob')
 const nodemailer = require('nodemailer');
 const download = require('image-downloader')
 require('dotenv').config();
 var transport = require('nodemailer-smtp-transport');
 
-var CronJob = require('cron').CronJob;
-var job = new CronJob('15 10 * * * ', function() {
+const myPath =  './images/**/*.jpg';
+let attachment = '';
+
   
   request('https://www.qafqazislam.com/index.php?lang=az&sectionid=123', (error,response, html) => {
   if(!error && response.statusCode == 200) {
@@ -36,6 +38,12 @@ var job = new CronJob('15 10 * * * ', function() {
 })
 
 
+
+glob(myPath, function (er, files) {
+  console.log(files);
+  attachment = files[0]
+})
+
   const sendToMe =  () => {
   var smtpTransport = nodemailer.createTransport(transport({
     host: 'smtp.gmail.com', 
@@ -43,7 +51,7 @@ var job = new CronJob('15 10 * * * ', function() {
     auth: {type: 'OAuth2', user:  'pashayevseymur42@gmail.com', pass: process.env.password },
     tls:{rejectUnauthorized:false}
   })); 
-  var mailOptions = { from: 'pashayevseymur42@gmail.com', to: 'seymurpashayev2018@gmail.com', subject: 'Namaz vaxtı', attachments:[{path:'./images/12.jpg'}] }; 
+  var mailOptions = { from: 'pashayevseymur42@gmail.com', to: 'seymurpashayev2018@gmail.com', subject: 'Namaz vaxtı', attachments:[{path: attachment}] }; 
   smtpTransport.sendMail(mailOptions, (error, response) => { 
     
   if(error) { console.log(error) 
@@ -55,8 +63,7 @@ var job = new CronJob('15 10 * * * ', function() {
   
   }); 
 }
-});
-job.start();
+
   
   
 
